@@ -5,17 +5,17 @@ from distutils.core import setup, Extension
 from os import path
 
 setup(name = "guess",
-      version = "1.0.2",
+      version = "1.0.3",
       description = "Gauche's charactor encoding detector for Python",
       long_description = '''
 Example:
 
 >>> import guess
->>> s = '\\xe3\\x81\\x82'
->>> print s
-あ
->>> print guess.guess(s)
-UTF-8
+>>> s = '\\x82\\xa0\\x82\\xa2\\x82\\xa4\\x82\\xa6\\x82\\xa8'
+>>> guess.guess(s)
+'Shift_JIS'
+>>> print s.decode('Shift_JIS')
+あいうえお
 ''',
       author = "Tsukasa Hamano",
       author_email = "code@cuspy.org",

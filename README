@@ -8,12 +8,13 @@ INSTALL
 
 EXAMPLE
 -------
- >>> import guess
- >>> s = '\xe3\x81\x82'
- >>> print s
- あ
- >>> print guess.guess(s)
- UTF-8
+
+    >>> import guess
+    >>> s = '\x82\xa0\x82\xa2\x82\xa4\x82\xa6\x82\xa8'
+    >>> guess.guess(s)
+    'Shift_JIS'
+    >>> print s.decode('Shift_JIS')
+    あいうえお
 
 LICENSE
 -------
