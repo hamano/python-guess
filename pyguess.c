@@ -38,10 +38,11 @@ static PyObject * pyguess_guess(PyObject *self, PyObject *args)
 {
     PyObject *ret;
     char *str;
-    if(!PyArg_ParseTuple(args, "s", &str)){
+    int len;
+    if(!PyArg_ParseTuple(args, "s#", &str, &len)){
         return NULL;
     }
-    ret = PyString_FromString(guess_jp(str, strlen(str)));
+    ret = PyString_FromString(guess_jp(str, len));
     return ret;
 }
 
