@@ -1,18 +1,19 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 from distutils.core import setup, Extension
 from os import path
 
 setup(name = "guess",
-      version = "1.0.0",
+      version = "1.0.2",
       description = "Gauche's charactor encoding detector for Python",
       long_description = '''
 Example:
 
 >>> import guess
->>> s = '\xe3\x81\x82'
+>>> s = '\\xe3\\x81\\x82'
 >>> print s
-$B$"(B
+あ
 >>> print guess.guess(s)
 UTF-8
 ''',
