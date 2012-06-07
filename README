@@ -1,0 +1,25 @@
+Gauche's charactor encoding detector for Python
+===============================================
+
+INSTALL
+-------
+ python setup.py build
+ python setup.py install
+
+EXAMPLE
+-------
+ >>> import guess
+ >>> s = '\xe3\x81\x82'
+ >>> print s
+ あ
+ >>> print guess.guess(s)
+ UTF-8
+
+LICENSE
+-------
+BSD License
+
+AUTHER
+------
+Tsukasa Hamano <hamano@osstech.co.jp>
+guess_tab.c generator was written by Shiro Kawai <shiro@acm.org>

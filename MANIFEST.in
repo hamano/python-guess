@@ -1,0 +1,6 @@
+include MANIFEST.in
+include Makefile
+include COPYING
+include NEWS
+include README
+include *.h
