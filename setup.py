@@ -5,9 +5,12 @@ from distutils.core import setup, Extension
 from os import path
 
 setup(name = "guess",
-      version = "1.0.3",
-      description = "Gauche's charactor encoding detector for Python",
+      version = "1.0.4",
+      description = "Japanese charactor encoding detector",
       long_description = '''
+This module was ported from gauche charconv module.
+Supported encoding is UTF-8, Shift_JIS, EUC-JP, ISO-2022-JP
+
 Example:
 
 >>> import guess

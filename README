@@ -1,5 +1,8 @@
-Gauche's charactor encoding detector for Python
-===============================================
+Japanese charactor encoding detector
+====================================
+
+This module was ported from gauche charconv module.
+Supported encoding is UTF-8, Shift_JIS, EUC-JP, ISO-2022-JP
 
 INSTALL
 -------
