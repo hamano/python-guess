@@ -6,13 +6,19 @@ import sys
 import unittest
 import guess
 
+def bin2str(binary):
+    return ''.join(map(lambda c: '%x' % (ord(c)), binary))
+
 class GuessTest(unittest.TestCase):
+
 
     def file_test(self, filename, expect):
         filepath = os.path.dirname(__file__) + '/' + filename
         f = open(filepath, 'r')
         for line in f:
             word = line.decode('UTF-8').rstrip()
+            if word.startswith('#'):
+                continue
             if expect == 'Shift_JIS':
                 binary = word.encode('CP932')
             else:
@@ -20,8 +26,9 @@ class GuessTest(unittest.TestCase):
 
             detect = guess.guess(binary)
             if detect != expect:
-                msg = '%s encode to %s, but guess %s' \
-                    % (word, expect, detect)
+                msg = '%s encode to %s by %s, but guess %s(%s)' \
+                    % (word, bin2str(binary), expect, \
+                           detect, binary.decode(detect))
                 raise AssertionError(msg)
 
     def test_001_name_UTF8(self):
