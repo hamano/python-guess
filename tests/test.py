@@ -1,0 +1,58 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import os
+import sys
+import unittest
+import guess
+
+class GuessTest(unittest.TestCase):
+
+    def file_test(self, filename, expect):
+        filepath = os.path.dirname(__file__) + '/' + filename
+        f = open(filepath, 'r')
+        for line in f:
+            word = line.decode('UTF-8').rstrip()
+            if expect == 'Shift_JIS':
+                binary = word.encode('CP932')
+            else:
+                binary = word.encode(expect)
+
+            detect = guess.guess(binary)
+            if detect != expect:
+                msg = '%s encode to %s, but guess %s' \
+                    % (word, expect, detect)
+                raise AssertionError(msg)
+
+    def test_001_name_UTF8(self):
+        self.file_test('test-name.txt', 'UTF-8')
+
+    def test_002_name_Shift_JIS(self):
+        self.file_test('test-name.txt', 'Shift_JIS')
+
+    def test_003_name_EUCJP(self):
+        self.file_test('test-name.txt', 'EUC-JP')
+
+    def test_004_name_ISO2022JP(self):
+        self.file_test('test-name.txt', 'ISO-2022-JP')
+
+    def test_011_number_UTF8(self):
+        self.file_test('test-number.txt', 'UTF-8')
+
+    def test_012_number_Shift_JIS(self):
+        self.file_test('test-number.txt', 'Shift_JIS')
+
+    def test_013_number_EUCJP(self):
+        self.file_test('test-number.txt', 'EUC-JP')
+
+    def test_014_number_ISO2022JP(self):
+        self.file_test('test-number.txt', 'ISO-2022-JP')
+
+    def test_021_special_UTF8(self):
+        self.file_test('test-special.txt', 'UTF-8')
+
+    def test_022_special_Shift_JIS(self):
+        self.file_test('test-special.txt', 'Shift_JIS')
+
+if __name__ == '__main__':
+    unittest.main()
