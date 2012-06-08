@@ -25,9 +25,9 @@ class GuessTest(unittest.TestCase):
                 binary = word.encode(expect)
             detect = guess.guess(binary)
             if detect != expect:
+                falseword =  binary.decode(detect)
                 msg = '%s encode to %s by %s, but guess %s(%s)' \
-                    % (word, bin2str(binary), expect, \
-                           detect, binary.decode(detect))
+                    % (word, bin2str(binary), expect, detect, falseword)
                 raise AssertionError(msg)
 
     def test_name6_UTF8(self):
@@ -51,8 +51,20 @@ class GuessTest(unittest.TestCase):
     def test_name5_EUCJP(self):
         self.file_test('name5.txt', 'EUC-JP')
 
-    def test_name5_ISO2022JP(self):
-        self.file_test('name5.txt', 'ISO-2022-JP')
+    def test_name4_ISO2022JP(self):
+        self.file_test('name4.txt', 'ISO-2022-JP')
+
+    def test_name4_UTF8(self):
+        self.file_test('name4.txt', 'UTF-8')
+
+    def test_name4_Shift_JIS(self):
+        self.file_test('name4.txt', 'Shift_JIS')
+
+    def test_name4_EUCJP(self):
+        self.file_test('name4.txt', 'EUC-JP')
+
+    def test_name4_ISO2022JP(self):
+        self.file_test('name4.txt', 'ISO-2022-JP')
 
     def test_001_name_UTF8(self):
         self.file_test('test-name.txt', 'UTF-8')
