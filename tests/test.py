@@ -23,13 +23,36 @@ class GuessTest(unittest.TestCase):
                 binary = word.encode('CP932')
             else:
                 binary = word.encode(expect)
-
             detect = guess.guess(binary)
             if detect != expect:
                 msg = '%s encode to %s by %s, but guess %s(%s)' \
                     % (word, bin2str(binary), expect, \
                            detect, binary.decode(detect))
                 raise AssertionError(msg)
+
+    def test_name6_UTF8(self):
+        self.file_test('name6.txt', 'UTF-8')
+
+    def test_name6_Shift_JIS(self):
+        self.file_test('name6.txt', 'Shift_JIS')
+
+    def test_name6_EUCJP(self):
+        self.file_test('name6.txt', 'EUC-JP')
+
+    def test_name6_ISO2022JP(self):
+        self.file_test('name6.txt', 'ISO-2022-JP')
+
+    def test_name5_UTF8(self):
+        self.file_test('name5.txt', 'UTF-8')
+
+    def test_name5_Shift_JIS(self):
+        self.file_test('name5.txt', 'Shift_JIS')
+
+    def test_name5_EUCJP(self):
+        self.file_test('name5.txt', 'EUC-JP')
+
+    def test_name5_ISO2022JP(self):
+        self.file_test('name5.txt', 'ISO-2022-JP')
 
     def test_001_name_UTF8(self):
         self.file_test('test-name.txt', 'UTF-8')
