@@ -14,7 +14,7 @@ class GuessTest(unittest.TestCase):
 
     def file_test(self, filename, expect):
         filepath = os.path.dirname(__file__) + '/' + filename
-        f = open(filepath, 'r')
+        f = open(filepath, 'rb')
         for line in f:
             word = line.decode('UTF-8').rstrip()
             if word.startswith('#'):
@@ -29,6 +29,7 @@ class GuessTest(unittest.TestCase):
                 msg = '%s encode to %s by %s, but guess %s(%s)' \
                     % (word, bin2str(binary), expect, detect, falseword)
                 raise AssertionError(msg)
+        f.close()
 
     def test_name6_UTF8(self):
         self.file_test('name6.txt', 'UTF-8')

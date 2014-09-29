@@ -5,7 +5,7 @@ from distutils.core import setup, Extension
 from os import path
 
 setup(name = "guess",
-      version = "1.0.4",
+      version = "1.0.5",
       description = "Japanese charactor encoding detector",
       long_description = '''
 This module was ported from gauche charconv module.

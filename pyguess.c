@@ -42,7 +42,7 @@ static PyObject * pyguess_guess(PyObject *self, PyObject *args)
     if(!PyArg_ParseTuple(args, "s#", &str, &len)){
         return NULL;
     }
-    ret = PyString_FromString(guess_jp(str, len));
+    ret = PyUnicode_FromString(guess_jp(str, len));
     return ret;
 }
 
@@ -51,7 +51,21 @@ static PyMethodDef methods[] = {
 	{NULL, NULL}
 };
 
+#if PY_MAJOR_VERSION >= 3
+static struct PyModuleDef moduledef = {
+    PyModuleDef_HEAD_INIT,
+    "guess",
+    NULL,
+    -1,
+    methods
+};
+
+PyObject * PyInit_guess (void){
+    PyModule_Create(&moduledef);
+}
+#else
 void initguess(void)
 {
 	Py_InitModule3("guess", methods, pyguess_doc);
 }
+#endif
